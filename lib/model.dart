@@ -3,7 +3,7 @@ class NoteModel{
   String title;
   String desc;
 
-  NoteModel({this.id.re});
+  NoteModel({this.id,required this.title,required this.desc});
 
 
 
