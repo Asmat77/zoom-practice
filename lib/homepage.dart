@@ -50,8 +50,11 @@ class _HomePageState extends State<HomePage> {
                   return getBottomSheet(isupdate: true, nID: mData[index][DBHelper.NOTE_COLUMN_ID]);
                 });
               }, icon: Icon(Icons.edit)),
-              IconButton(onPressed: (){
-
+              IconButton(onPressed: ()async{
+                bool check=await db_Helper.deleteDB(id: mData[index][DBHelper.NOTE_COLUMN_ID]);
+                if(check){
+                  getNote();
+                }
               }, icon: Icon(Icons.delete))
             ],
           ),),

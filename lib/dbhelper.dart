@@ -52,16 +52,15 @@ class DBHelper{
   Future<bool> updateDB({required String title,required String desc,required int id})async{
     Database db=await initDB();
     int rowsEffected=await db.update(NOTE_TABLE, {
-      NOTE_COLUMN_ID: id,
       NOTE_COLUMN_TITLE:title,
       NOTE_COLUMN_DESC:desc
-    });
+    },where: "$NOTE_COLUMN_ID=? ", whereArgs: ["$id"]);
     return rowsEffected>0;
   }
 
   Future<bool> deleteDB({required int id})async{
     Database db=await initDB();
-    int rowsEffected=await db.delete(NOTE_TABLE);
+    int rowsEffected=await db.delete(NOTE_TABLE,where: "$NOTE_COLUMN_ID=?",whereArgs: ["$id"]);
     return rowsEffected>0;
   }
 
